@@ -2,7 +2,7 @@
 import React from 'react';
 import useMediaQuery from 'hooks/useMediaQuery';
 import styled from 'styled-components';
-import { Link } from 'common/style';
+import { StyledLink } from 'common/style';
 import TabletNavigation from 'components/Navigation/TabletNavigation';
 import DesktopNavigation from 'components/Navigation/DesktopNavigation';
 
@@ -24,7 +24,9 @@ function Navigation() {
   return (
     <Navbar>
       <Logo>
-        <Link href="/">LOGO</Link>
+        <StyledLink to="/" style={{ fontSize: '1em' }}>
+          LOGO
+        </StyledLink>
       </Logo>
       {matches ? <DesktopNavigation /> : <TabletNavigation />}
     </Navbar>

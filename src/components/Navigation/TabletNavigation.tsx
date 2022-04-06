@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import { MENUS, LOGINS } from 'common/constant';
-import { Link } from 'common/style';
+import { StyledLink } from 'common/style';
 import styled from 'styled-components';
-
-const menuImg = require('../../assets/imgs/menu.png');
+import { MdMenu } from 'react-icons/md';
 
 const ALLMENUS = [...MENUS, ...LOGINS];
-
-const TabletToggle = styled.div`
-  background-image: url(${menuImg});
-  cursor: pointer;
-  width: 1em;
-  height: 1em;
-  z-index: 1;
-  @media (min-width: 1024px) {
-    display: none;
-  }
-`;
 
 const TabletMenus = styled.div<{ toggle: boolean }>`
   position: absolute;
@@ -41,12 +29,10 @@ function TabletNavigation() {
 
   return (
     <>
-      <TabletToggle onClick={handleClick} />
+      <MdMenu style={{ zIndex: 5 }} onClick={handleClick} />
       <TabletMenus toggle={toggle}>
         {ALLMENUS.map(menu => (
-          <Link key={menu} href="/" style={{ color: '#fff' }}>
-            {menu}
-          </Link>
+          <StyledLink to={menu === 'Home' ? '/' : menu}>{menu}</StyledLink>
         ))}
       </TabletMenus>
     </>

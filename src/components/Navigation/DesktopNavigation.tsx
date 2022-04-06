@@ -1,6 +1,6 @@
 import React from 'react';
 import { MENUS, LOGINS } from 'common/constant';
-import { Link } from 'common/style';
+import { StyledLink } from 'common/style';
 import styled from 'styled-components';
 
 const NavItems = styled.ul`
@@ -23,15 +23,15 @@ function DesktopNavigation() {
     <>
       <NavItems>
         {MENUS.map(menu => (
-          <NavItem key={menu}>
-            <Link href="/">{menu}</Link>
+          <NavItem key={menu} style={{ margin: '0 5vh' }}>
+            <StyledLink to={menu === 'Home' ? '/' : menu}>{menu}</StyledLink>
           </NavItem>
         ))}
       </NavItems>
       <NavItems>
         {LOGINS.map(login => (
           <NavItem key={login}>
-            <Link href="/">{login}</Link>
+            <StyledLink to={login}>{login}</StyledLink>
           </NavItem>
         ))}
       </NavItems>
