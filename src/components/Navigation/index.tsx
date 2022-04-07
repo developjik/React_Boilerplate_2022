@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import React from 'react';
-import useMediaQuery from 'hooks/useMediaQuery';
+import { useMediaQuery } from 'usehooks-ts';
 import styled from 'styled-components';
 import { StyledLink } from 'common/style';
 import TabletNavigation from 'components/Navigation/TabletNavigation';

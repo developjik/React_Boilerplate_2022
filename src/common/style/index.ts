@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #000;
+  color: ${({ theme }: { theme: any }) => theme.text};
   font-size: 0.9em;
 `;
 
