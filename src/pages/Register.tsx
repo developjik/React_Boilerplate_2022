@@ -1,16 +1,20 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import styled from 'styled-components';
 import { BodyContainer } from 'common/style';
+import RegisterForm from 'components/RegisterForm';
 
 const RC = styled(BodyContainer)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 97.5vh;
 `;
 
 function Register() {
-  return <RC>Register</RC>;
+  return (
+    <RC>
+      <RegisterForm />
+    </RC>
+  );
 }
 
 export default Register;

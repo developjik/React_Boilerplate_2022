@@ -1,16 +1,20 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+
 import styled from 'styled-components';
 import { BodyContainer } from 'common/style';
+import LoginForm from 'components/LoginForm';
 
 const LC = styled(BodyContainer)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 97.5vh;
 `;
 
 function Login() {
-  return <LC>Login</LC>;
+  return (
+    <LC>
+      <LoginForm />
+    </LC>
+  );
 }
 
 export default Login;
