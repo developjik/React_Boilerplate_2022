@@ -32,7 +32,13 @@ function TabletNavigation() {
       <MdMenu style={{ zIndex: 5 }} onClick={handleClick} />
       <TabletMenus toggle={toggle}>
         {ALLMENUS.map(menu => (
-          <StyledLink to={menu === 'Home' ? '/' : menu}>{menu}</StyledLink>
+          <StyledLink
+            key={menu}
+            to={menu === 'Home' ? '/' : menu}
+            onClick={handleClick}
+          >
+            {menu}
+          </StyledLink>
         ))}
       </TabletMenus>
     </>
