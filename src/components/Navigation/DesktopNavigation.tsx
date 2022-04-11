@@ -1,11 +1,16 @@
 import React from 'react';
-import { MENUS, LOGINS } from 'common/constant';
+
+import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { userStore } from 'store/user';
+
+import { MENUS, LOGINS, LOGOUT } from 'common/constant';
 import { StyledLink } from 'common/style';
 import styled from 'styled-components';
 
 const NavItems = styled.ul`
   display: flex;
   list-style: none;
+  cursor: pointer;
 
   @media (max-width: 1024px) {
     display: none;
@@ -19,6 +24,9 @@ const NavItem = styled.li`
 `;
 
 function DesktopNavigation() {
+  const user = useRecoilValue(userStore);
+  const setUserLogOut = useResetRecoilState(userStore);
+
   return (
     <>
       <NavItems>
@@ -29,11 +37,20 @@ function DesktopNavigation() {
         ))}
       </NavItems>
       <NavItems>
-        {LOGINS.map(login => (
-          <NavItem key={login}>
-            <StyledLink to={login}>{login}</StyledLink>
-          </NavItem>
-        ))}
+        {JSON.stringify(user) !== JSON.stringify({}) ? (
+          <>
+            <NavItem>{`${user.name} 님 `}</NavItem>
+            <NavItem onClick={setUserLogOut}>{LOGOUT}</NavItem>
+          </>
+        ) : (
+          <>
+            {LOGINS.map(login => (
+              <NavItem key={login}>
+                <StyledLink to={login}>{login}</StyledLink>
+              </NavItem>
+            ))}
+          </>
+        )}
       </NavItems>
     </>
   );

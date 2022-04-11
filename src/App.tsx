@@ -1,4 +1,5 @@
 import React from 'react';
+import { RecoilRoot } from 'recoil';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useDarkMode } from 'usehooks-ts';
 
@@ -47,34 +48,36 @@ function App() {
   const { isDarkMode, toggle } = useDarkMode();
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-      <div className="App">
-        <Router>
-          <GlobalStyles />
+    <RecoilRoot>
+      <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+        <div className="App">
+          <Router>
+            <GlobalStyles />
 
-          <Navigation />
+            <Navigation />
 
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/more" element={<More />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-          </Routes>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/more" element={<More />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+            </Routes>
 
-          <DarkModeToggle onClick={toggle}>
-            {isDarkMode ? (
-              <IoSunnyOutline style={{ color: '#000', fontSize: '1.5em' }} />
-            ) : (
-              <IoMoonOutline style={{ color: '#fff', fontSize: '1.5em' }} />
-            )}
-          </DarkModeToggle>
+            <DarkModeToggle onClick={toggle}>
+              {isDarkMode ? (
+                <IoSunnyOutline style={{ color: '#000', fontSize: '1.5em' }} />
+              ) : (
+                <IoMoonOutline style={{ color: '#fff', fontSize: '1.5em' }} />
+              )}
+            </DarkModeToggle>
 
-          <Footer />
-        </Router>
-      </div>
-    </ThemeProvider>
+            <Footer />
+          </Router>
+        </div>
+      </ThemeProvider>
+    </RecoilRoot>
   );
 }
 

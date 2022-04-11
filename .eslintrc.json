@@ -16,6 +16,7 @@
   "rules": {
     "arrow-parens": ["error", "as-needed"],
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
+    "react/jsx-one-expression-per-line": "off",
     "global-require": "off",
     "import/extensions": [
       "error",

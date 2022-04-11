@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { MENUS, LOGINS } from 'common/constant';
+
+import { useRecoilValue, useResetRecoilState } from 'recoil';
+import { userStore } from 'store/user';
+
 import { StyledLink } from 'common/style';
 import styled from 'styled-components';
 import { MdMenu } from 'react-icons/md';
 
-const ALLMENUS = [...MENUS, ...LOGINS];
+import { MENUS, LOGINS, LOGOUT } from 'common/constant';
+import { ThemeInterface } from 'common/interface';
 
 const TabletMenus = styled.div<{ toggle: boolean }>`
   position: absolute;
@@ -20,18 +24,34 @@ const TabletMenus = styled.div<{ toggle: boolean }>`
   background-color: #bbb;
 `;
 
+const LogOutBtn = styled.button`
+  background: ${({ theme }: { theme: ThemeInterface }) => theme.text};
+  color: ${({ theme }: { theme: ThemeInterface }) => theme.bg};
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.5em 0.25em;
+`;
+
 function TabletNavigation() {
   const [toggle, setToggle] = useState(false);
 
+  const user = useRecoilValue(userStore);
+  const setUserLogOut = useResetRecoilState(userStore);
+
   const handleClick = () => {
     setToggle(!toggle);
+  };
+
+  const onClickLogout = () => {
+    setUserLogOut();
+    handleClick();
   };
 
   return (
     <>
       <MdMenu style={{ zIndex: 5 }} onClick={handleClick} />
       <TabletMenus toggle={toggle}>
-        {ALLMENUS.map(menu => (
+        {MENUS.map(menu => (
           <StyledLink
             key={menu}
             to={menu === 'Home' ? '/' : menu}
@@ -40,6 +60,20 @@ function TabletNavigation() {
             {menu}
           </StyledLink>
         ))}
+
+        {JSON.stringify(user) !== JSON.stringify({}) ? (
+          <LogOutBtn type="button" onClick={onClickLogout}>
+            {LOGOUT}
+          </LogOutBtn>
+        ) : (
+          <>
+            {LOGINS.map(menu => (
+              <StyledLink key={menu} to={menu} onClick={handleClick}>
+                {menu}
+              </StyledLink>
+            ))}
+          </>
+        )}
       </TabletMenus>
     </>
   );
