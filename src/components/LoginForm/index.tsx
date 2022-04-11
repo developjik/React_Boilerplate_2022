@@ -1,5 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
+import { userStore } from 'store/user';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -7,6 +9,7 @@ import axios from 'axios';
 import { Form, Input } from 'common/style';
 
 function LoginForm() {
+  const setUser = useSetRecoilState(userStore);
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
 
@@ -14,7 +17,13 @@ function LoginForm() {
     await axios
       .post(`${process.env.REACT_APP_BACKEND}`, data)
       .then(res => {
-        console.log(res.data);
+        setUser({
+          id: res.data.user.id,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          phone: res.data.user.phone,
+          accessToken: res.data.accessToken,
+        });
         navigate('/');
       })
       .catch(error => {
