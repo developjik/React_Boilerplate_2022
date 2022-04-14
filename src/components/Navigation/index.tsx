@@ -5,6 +5,7 @@ import { useMediaQuery } from 'usehooks-ts';
 
 import styled from 'styled-components';
 import { StyledLink } from 'common/style';
+import { ThemeInterface } from 'common/interface';
 
 import TabletNavigation from 'components/Navigation/TabletNavigation';
 import DesktopNavigation from 'components/Navigation/DesktopNavigation';
@@ -16,7 +17,8 @@ const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid
+    ${({ theme }: { theme: ThemeInterface }) => theme.text};
 `;
 
 const Logo = styled.div``;
