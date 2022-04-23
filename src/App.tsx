@@ -18,6 +18,7 @@ import About from 'pages/About';
 import Footer from 'components/Footer';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
+import Error from 'pages/Error';
 
 const GlobalStyles = createGlobalStyle` 
     ${reset};
@@ -63,6 +64,7 @@ function App() {
               <Route path="/more" element={<More />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="*" element={<Error />} />
             </Routes>
 
             <DarkModeToggle onClick={toggle}>
